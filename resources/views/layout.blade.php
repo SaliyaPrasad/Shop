@@ -304,6 +304,8 @@
 	</div>
 	<!-- /section -->
 
+	@yield('content')
+
 	<!-- FOOTER -->
 	<footer id="footer" class="section section-grey">
 		<!-- container -->
