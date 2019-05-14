@@ -1,2 +1,2 @@
 # wshopper
-E commese site like ebay
+E-commece site like aliexprese
