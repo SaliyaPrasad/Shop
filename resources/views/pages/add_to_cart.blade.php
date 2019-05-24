@@ -1,109 +1,72 @@
 @extends('layout')
 @section('content')
 <section id="cart_items">
-		<div class="container">
+		<div class="container ">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
 				  <li><a href="#">Home</a></li>
 				  <li class="active">Shopping Cart</li>
 				</ol>
+
 			</div>
 			<div class="table-responsive cart_info">
+			<?php
+			$contents=Cart::content();
+			// echo "<pre>";
+			//print_r($contents);
+			//echo "</pre>";
+
+			?>
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
-							<td class="description"></td>
+							<td class="image">Image</td>
+							<td class="description">Name</td>
 							<td class="price">Price</td>
 							<td class="quantity">Quantity</td>
 							<td class="total">Total</td>
-							<td></td>
+							<td>Action</td>
 						</tr>
 					</thead>
 					<tbody>
+						<?php foreach($contents as $v_contents) {?>
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="images/cart/one.png" alt=""></a>
+								<a href=""><img src="{{URL::to($v_contents->options->image) }}" height="80px" width="80px" alt=""></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
+								<h4><a href="">{{$v_contents->name}}</a></h4>
+								
 							</td>
 							<td class="cart_price">
-								<p>$59</p>
+								<p>${{$v_contents->price}}</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
+								<form action="{{url('/update-cart')}}" method="post">
+								{{csrf_field()}}
+									<input class="cart_quantity_input" type="text" name="qty" value="{{$v_contents->qty}}" autocomplete="off" size="2">
+									<input type="hidden" name="rowId" value="{{$v_contents->rowId}}" >
+									<input type="submit" name="submit" value="update" class="btn btn-sn btn-default">
+								</form>
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+								<p class="cart_total_price">${{$v_contents->total}}</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete" href="{{('/delete-to-cart/'.$v_contents->rowId)}}"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
-
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/two.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/three.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
+						<?php } ?>
+						
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</section> <!--/#cart_items-->
 
-	<section id="do_action">
+	<!--<section id="do_action">
 		<div class="container">
 			<div class="heading">
 				<h3>What would you like to do next?</h3>
@@ -163,15 +126,31 @@
 						<a class="btn btn-default update" href="">Get Quotes</a>
 						<a class="btn btn-default check_out" href="">Continue</a>
 					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="total_area">
-						<ul>
-							<li>Cart Sub Total <span>$59</span></li>
-							<li>Eco Tax <span>$2</span></li>
-							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>$61</span></li>
-						</ul>
+				</div> -->
+				<div class="container ">
+					<div class="breadcrumbs">
+				<table class="alt">
+          
+							
+				
+						<tr>
+							<th>Cart Sub Total</th>
+							<td><span>${{Cart::subtotal()}}</span></td>
+						</tr>
+						<tr>
+							<th>Eco Tax </th>
+							<td><span>${{Cart::tax()}}</span></td>
+						</tr>
+						<tr>
+							<th>Shipping Cost </th>
+							<td><span>Free</span></td>
+						</tr>
+						<tr>
+							<th>Total</th>
+							<td><span>${{Cart::total()}}</span></td>
+						</tr>
+						</table>
+						<br>
 							<a class="btn btn-default update" href="">Update</a>
 							<a class="btn btn-default check_out" href="">Check Out</a>
 					</div>

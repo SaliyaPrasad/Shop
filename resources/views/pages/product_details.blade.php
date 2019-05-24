@@ -16,20 +16,7 @@
 							</div>
 						
 						</div>
-						<div id="product-view">
-							<div class="product-view">
-								<img src="{{URL::to($product_by_details->product_image)}}" alt="">
-							</div>
-							<div class="product-view">
-								<img src="./img/thumb-product02.jpg" alt="">
-							</div>
-							<div class="product-view">
-								<img src="./img/thumb-product03.jpg" alt="">
-							</div>
-							<div class="product-view">
-								<img src="./img/thumb-product04.jpg" alt="">
-							</div>
-						</div>
+						
 					</div>
 					<div class="col-md-6">
 						<div class="product-body">
@@ -39,16 +26,7 @@
 							</div>
 							<h2 class="product-name">{{$product_by_details->product_name}}</h2>
 							<h3 class="product-price">$ {{$product_by_details->product_price}} <del class="product-old-price">$45.00</del></h3>
-							<div>
-								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o empty"></i>
-								</div>
-								<a href="#">3 Review(s) / Add Review</a>
-							</div>
+							
 							<p><strong>Availability:</strong> In Stock</p>
 							<p><strong>Brand:</strong> {{$product_by_details->manufacture_name}}</p>
 							
@@ -59,20 +37,24 @@
 									
 								</ul>
 								<ul class="color-option">
-									<li><span class="text-uppercase">Color:</span></li>
-									<li class="active"><a href="#" style="background-color:#475984;"></a></li>
-									<li><a href="#" style="background-color:#8A2454;"></a></li>
-									<li><a href="#" style="background-color:#BF6989;"></a></li>
-									<li><a href="#" style="background-color:#9A54D8;"></a></li>
+									<li><span class="text-uppercase">Color:<b>{{$product_by_details->product_color}}<b></span></li>
+									
 								</ul>
 							</div>
 
 							<div class="product-btns">
 								<div class="qty-input">
+								<form action="{{url('/add-to-cart')}}" method="post">
+									{{ csrf_field() }}
 									<span class="text-uppercase">QTY: </span>
-									<input class="input" type="number">
+									<input class="input" name="qty"  type="text" value="1" />
+									<input type="hidden" name="product_id" value="{{$product_by_details->product_id}}" >
 								</div>
+								<br>
+								<br>
+								<br>
 								<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+								</form>
 								<div class="pull-right">
 									<button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
 									<button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
