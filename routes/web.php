@@ -23,10 +23,21 @@ Route::get('/show-cart','CartController@show_cart');
 Route::get('/delete-to-cart/{rowId}','CartController@delete_to_cart');
 Route::post('/update-cart','CartController@update_cart');
 
+//checkout routes are here---------
+Route::get('/login-check','CheckoutController@login_check');
+Route::post('/customer_registration','CheckoutController@customer_registration');
+Route::get('/checkout','CheckoutController@checkout');
+Route::post('/save-shipping-details','CheckoutController@save_shipping_details');
+//customer login and logout are here----------------------------
+Route::post('/customer_login','CheckoutController@customer_login');
+Route::get('/customer_logout','CheckoutController@customer_logout');
 
 
+Route::get('/payment','CheckoutController@payment');
+Route::post('/order-place','CheckoutController@order_place');
 
-
+Route::get('/manage-order','CheckoutController@manage_order');
+Route::get('/view-order/{order_id}','CheckoutController@view_order');
 
 
 
