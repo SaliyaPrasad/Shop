@@ -21,6 +21,7 @@ class CreateTblProductsTable extends Migration
             $table->longText('product_short_description');
             $table->longText('product_long_description');
             $table->float('product_price');
+            $table->float('product_2price');
             $table->string('product_image');
             $table->string('product_size');
             $table->string('product_color');

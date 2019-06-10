@@ -25,7 +25,7 @@
 								<span class="sale">-20%</span>
 							</div>
 							<h2 class="product-name">{{$product_by_details->product_name}}</h2>
-							<h3 class="product-price">$ {{$product_by_details->product_price}} <del class="product-old-price">$45.00</del></h3>
+							<h3 class="product-price">$ {{$product_by_details->product_price}} <del class="product-old-price">$ {{$product_by_details->product_2price}}</del></h3>
 							
 							<p><strong>Availability:</strong> In Stock</p>
 							<p><strong>Brand:</strong> {{$product_by_details->manufacture_name}}</p>

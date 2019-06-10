@@ -58,6 +58,7 @@ class ProductController extends Controller
         $data['product_short_description']=$request->product_short_description;
         $data['product_long_description']=$request->product_long_description;
         $data['product_price']=$request->product_price;
+        $data['product_2price']=$request->product_2price;
         $data['product_size']=$request->product_size;
         $data['product_color']=$request->product_color;
         $data['publication_status']=$request->publication_status;

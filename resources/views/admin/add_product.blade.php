@@ -94,6 +94,12 @@
 								<input type="text" class="input-xlarge" name="product_price" required="">
 							  </div>
 							</div>
+							<div class="control-group hidden-phone">
+							  <label class="control-label" for="data01">Offer price </label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge" name="product_2price" required="">
+							  </div>
+							</div>
                 <div class="control-group">
 							  <label class="control-label" for="fileInput">Image </label>
 							  <div class="controls">

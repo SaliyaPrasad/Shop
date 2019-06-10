@@ -47,9 +47,10 @@
 										<td class="total text-center"><strong class="primary-color">${{$v_contents->total}}</strong></td>
 										<td class="text-right"><button class="main-btn icon-btn"><a href="{{('/delete-to-cart/'.$v_contents->rowId)}}" > <i class="fa fa-close"></i></button></td>
 									</tr>
-									
+									<?php }?>
 								</tbody>
 								<tfoot>
+								<?php foreach ($contents as $v_contents) {?>
 									<tr>
 										<th class="empty" colspan="3"></th>
 										<th>SUBTOTAL</th>
@@ -65,8 +66,9 @@
 										<th>TOTAL</th>
 										<th colspan="2" class="total">${{$v_contents->total}}</th>
 									</tr>
-								</tfoot>
 								<?php }?>
+								</tfoot>
+								
 							</table>
 							
 						</div>

@@ -20,7 +20,6 @@
 	<link href="{{asset('css/responsive.css')}}" rel="stylesheet">
 
 	
-	
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
@@ -50,149 +49,149 @@
 </head>
 
 <body>
+</head>
+
+<body>
 	<!-- HEADER -->
 	<header>
-		
+	
 
 		<!-- header -->
 		<div id="header">
-			<div class="container">
-				<div class="pull-left">
-					<!-- Logo -->
-					<div class="header-logo">
-						<a class="logo" href="http://127.0.0.1:8000">
-							<img src="{{URL::to('frontend/img/logo.png')}}" alt="">
-						</a>
-					</div>
+	    <div class="container">
+	      <div class="pull-left">
+	        <!-- Logo -->
+	        <div class="header-logo">
+	          <a class="logo" href="http://127.0.0.1:8000">
+	            <img src="{{URL::to('frontend/img/logo.png')}}" alt="">
+	          </a>
+	        </div>
 					<!-- /Logo -->
 
 					<!-- Search -->
 					<div class="header-search">
-						<form>
-							<input class="input search-input" type="text" placeholder="Enter your keyword">
-							<select class="input search-categories">
-								<option value="0">All Categories</option>
-								<option value="1">Category 01</option>
-								<option value="1">Category 02</option>
-							</select>
-							<button class="search-btn"><i class="fa fa-search"></i></button>
-						</form>
-					</div>
+	          <form>
+	        
+	            <input class="input search-input" type="text" placeholder="Enter your keyword">
+	            <select class="input search-categories">
+	              <?php $all_published_category=DB::table('tbl_category') ->where('publication_status',1) ->get(); foreach($all_published_category as $v_category){?>
+	              <option value="0">{{$v_category->category_name}}</option>
+	              <?php }?>
+	            </select>
+	            <button class="search-btn"><i class="fa fa-search"></i></button>
+	          
+	          </form>
+	        </div>
 					<!-- /Search -->
 				</div>
-				<div class="pull-right">
-					<ul class="header-btns">
-						<!-- Account -->
-						<?php $customer_id=Session::get('customer_id');
-											$shipping_id=Session::get('shipping_id');
-										
-
-								?>
-						<li class="header-account dropdown default-dropdown">
-							<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
-								<div class="header-btns-icon">
-									<i class="fa fa-user-o"></i>
-								</div>
-								<strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
-								
-							</div>
-							
-							<?php
-								 $customer_id=Session::get('customer_id');
-								 ?>
-								 <?php if($customer_id !=  NULL){?>
-							<a href="{{URL::to('customer_logout')}}" class="text-uppercase">LogOut</a>
-							<?php }else{?>
-							<a href="{{URL::to('/login-check')}}" class="text-uppercase">Login</a>
-							<?php } ?>
-							 / <a href="#" class="text-uppercase">Join</a>
-							<ul class="custom-menu">
-								<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-								<li><a href="#"><i class="fa fa-heart-o"></i> My Wishlist</a></li>
-								
-								<li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>
-								<?php if($customer_id !=NULL && $shipping_id==NULL){?>
-								<li><a href="{{URL::to('/checkout')}}"><i class="fa fa-check"></i> Checkout</a></li>
-								<?php }if($customer_id !=NULL && $shipping_id!=NULL){?>
-									
-								<li><a href="{{URL::to('/payment')}}"><i class="fa fa-check"></i> Checkout</a></li>
-								
-								<?php }else{ ?>
-									<li><a href="{{URL::to('/login-check')}}"><i class="fa fa-check"></i> Checkout</a></li>
-								<?php }?>
-								<?php
-								 $customer_id=Session::get('customer_id');
-								 ?>
-								<?php if($customer_id !=  NULL){?>
-								<li><a href="{{URL::to('customer_logout')}}"><i class="fa fa-unlock-alt"></i> Logout</a></li>
-								<?php }else{?>
-								<li><a href="{{URL::to('/login-check')}}"><i class="fa fa-unlock-alt"></i> Login</a></li>
-								<?php } ?>
-								<li><a href="#"><i class="fa fa-user-plus"></i> Create An Account</a></li>
-							</ul>
-						</li>
+	      <div class="pull-right">
+	        <ul class="header-btns">
+	          <!-- Account -->
+	          <?php $customer_id=Session::get('customer_id');
+	                    $shipping_id=Session::get('shipping_id');
+	                  
+	
+	              ?>
+	          <li class="header-account dropdown default-dropdown">
+	            <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+	              <div class="header-btns-icon">
+	                <i class="fa fa-user-o"></i>
+	              </div>
+	              <strong class="text-uppercase">My Account <i class="fa fa-caret-down"></i></strong>
+	              
+	            </div>
+	            
+	            <?php
+	               $customer_id=Session::get('customer_id');
+	               ?>
+	               <?php if($customer_id !=  NULL){?>
+	            <a href="{{URL::to('customer_logout')}}" class="text-uppercase">LogOut</a>
+	            <?php }else{?>
+	            <a href="{{URL::to('/login-check')}}" class="text-uppercase">Login</a>
+	            <?php } ?>
+	             / <a href="{{URL::to('/login-check')}}" class="text-uppercase">Join</a>
+	            <ul class="custom-menu">
+	              <li><a href="{{URL::to('/login-check')}}"><i class="fa fa-user-o"></i> My Account</a></li>
+	              
+	              
+	              <li><a href="#"><i class="fa fa-exchange"></i> Compare</a></li>
+	              <?php if($customer_id !=NULL && $shipping_id==NULL){?>
+	              <li><a href="{{URL::to('/checkout')}}"><i class="fa fa-check"></i> Checkout</a></li>
+	              <?php }if($customer_id !=NULL && $shipping_id!=NULL){?>
+	                
+	              <li><a href="{{URL::to('/payment')}}"><i class="fa fa-check"></i> Checkout</a></li>
+	              
+	              <?php }else{ ?>
+	                <li><a href="{{URL::to('/login-check')}}"><i class="fa fa-check"></i> Checkout</a></li>
+	              <?php }?>
+	              <?php
+	               $customer_id=Session::get('customer_id');
+	               ?>
+	              <?php if($customer_id !=  NULL){?>
+	              <li><a href="{{URL::to('customer_logout')}}"><i class="fa fa-unlock-alt"></i> Logout</a></li>
+	              <?php }else{?>
+	              <li><a href="{{URL::to('/login-check')}}"><i class="fa fa-unlock-alt"></i> Login</a></li>
+	              
+	              <li><a href="{{URL::to('/login-check')}}"><i class="fa fa-user-plus"></i> Create An Account</a></li>
+				  <?php } ?>
+	            </ul>
+	          </li>
 						<!-- /Account -->
 
 						<!-- Cart -->
-						
-						<?php
-						$contents=Cart::content();
-						
+          
+          <?php
+          $contents=Cart::content();
+          
 
-						?>
-						
-						<li class="header-cart dropdown default-dropdown">
-						
+          ?>
+          
+          <li class="header-cart dropdown default-dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-						
 								<div class="header-btns-icon">
-									
 									<i class="fa fa-shopping-cart"></i>
-										
-								
+									
 								</div>
-								<?php foreach($contents as $v_contents) {?>	
+								
 								<strong class="text-uppercase">My Cart:</strong>
 								<br>
-								
-								<span>${{$v_contents->total}}</span>
-								
+								<?php foreach($contents as $v_contents) {?>
+								<span>${{$v_contents->total}}.00</span>
+								<?php  }?>
 							</a>
-							
+						
 							<div class="custom-menu">
 								<div id="shopping-cart">
 									<div class="shopping-cart-list">
 										<div class="product product-widget">
+										<?php foreach($contents as $v_contents) {?>
 											<div class="product-thumb">
 											
 												<img src="{{URL::to($v_contents->options->image) }}" alt="">
 											</div>
 											<div class="product-body">
 												<h3 class="product-price">${{$v_contents->price}} <span class="qty">x{{$v_contents->qty}}</span></h3>
-												<h2 class="product-name">{{$v_contents->name}}</h2>
+												<h2 class="product-name"><a href="#">{{$v_contents->name}}</a></h2>
 											</div>
-											<button class="cancel-btn"><a href="{{('/delete-to-cart/'.$v_contents->rowId)}}" ><i class="fa fa-trash"></i></a></button>
-										
-										</div>
+											<button class="cancel-btn"><a href="{{('/delete-to-cart/'.$v_contents->rowId)}}" ><i class="fa fa-trash"></i></a></i></button>
 											
+										</div>
+										<?php } ?>	
 									</div>
-									
-								
+						
 									<div class="shopping-cart-btns">
+										
 										<button class="main-btn"><a href="{{URL::to('/show-cart')}}">View Cart</a></button>
-										<button class="primary-btn">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+										<button class="primary-btn"><a href="{{URL::to('/login-check')}}">Checkout </a><i class="fa fa-arrow-circle-right"></i></button>
 										
 									</div>
 									
 								</div>
 								
 							</div>
-							
-						<?php } ?>
-						
+								
 						</li>
-						
-						<!-- /Cart -->
+          <!-- /Cart -->
 
 						<!-- Mobile nav toggle-->
 						<li class="nav-toggle">
@@ -207,7 +206,6 @@
 		<!-- container -->
 	</header>
 	<!-- /HEADER -->
-
 	<!-- NAVIGATION -->
 	<div id="navigation">
 		<!-- container -->
@@ -221,7 +219,7 @@
 				
 						<li class="dropdown side-dropdown">
 						<?php $all_published_category=DB::table('tbl_category') ->where('publication_status',1) ->get(); foreach($all_published_category as $v_category){?>
-							<a href="#" >{{$v_category->category_name}} </a>
+							<li><a href="#" >{{$v_category->category_name}} </a></li>
 							<div class="custom-menu">
 								<div class="row">
 								
@@ -240,62 +238,33 @@
 				
 				</div>
 				<!-- /category nav -->
-
+	
 				<!-- menu nav -->
 				<div class="menu-nav">
 					<span class="menu-header">Menu <i class="fa fa-bars"></i></span>
 					<ul class="menu-list">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Shop</a></li>
-						<li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Women <i class="fa fa-caret-down"></i></a>
-							<div class="custom-menu">
-								<div class="row">
-									<div class="col-md-4">
-										<ul class="list-links">
-											<li>
-												<h3 class="list-links-title">Categories</h3></li>
-											<li><a href="#">Women’s Clothing</a></li>
-											<li><a href="#">Men’s Clothing</a></li>
-											<li><a href="#">Phones & Accessories</a></li>
-											<li><a href="#">Jewelry & Watches</a></li>
-											<li><a href="#">Bags & Shoes</a></li>
-										</ul>
-										<hr class="hidden-md hidden-lg">
-									</div>
-									
-									
-								</div>
+						<li><a href="http://127.0.0.1:8000">Home</a></li>
+						<?php
+								$all_published_manufacture=DB::table('tbl_manufacture')
+														->where('publication_status',1)
+														->get();
+
+								?>
+						<li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Brands <i class="fa fa-caret-down"></i></a>
+							<ul class="custom-menu">
+							<?php	foreach($all_published_manufacture as $v_manufacture){?>
+								<li><a href="{{URL::to('/product_by_manufacture/'.$v_manufacture->manufacture_id)}}">{{$v_manufacture->manufacture_name}}</a></li>
+								<?php }?>
+							</ul>
+						</li>
 								
-							</div>
-						</li>
-						<li class="dropdown mega-dropdown full-width"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Men <i class="fa fa-caret-down"></i></a>
-							<div class="custom-menu">
-								<div class="row">
-									<div class="col-md-3">
-										<div class="hidden-sm hidden-xs">
-											<a class="banner banner-1" href="#">
-												<img src="./img/banner06.jpg" alt="">
-												<div class="banner-caption text-center">
-													<h3 class="white-color text-uppercase">Women’s</h3>
-												</div>
-											</a>
-											<hr>
-										</div>
-										
-									</div>
-									
-									
-									
-								</div>
-							</div>
-						</li>
-						<li><a href="#">Sales</a></li>
+						
 						<li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Pages <i class="fa fa-caret-down"></i></a>
 							<ul class="custom-menu">
-								<li><a href="index.html">Home</a></li>
+								<li><a href="http://127.0.0.1:8000/">Home</a></li>
 								<li><a href="products.html">Products</a></li>
 								<li><a href="product-page.html">Product Details</a></li>
-								<li><a href="{{URL::to('/login-check')}}">Checkout</a></li>
+								<li><a href="checkout.html">Checkout</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -306,7 +275,8 @@
 		<!-- /container -->
 	</div>
 	<!-- /NAVIGATION -->
-
+	
+	
 	<!-- BREADCRUMB -->
 	<div id="breadcrumb">
 		<div class="container">
@@ -317,7 +287,7 @@
 		</div>
 	</div>
 	<!-- /BREADCRUMB -->
-
+	
 	<!-- section -->
 	<div class="section">
 		<!-- container -->
@@ -330,9 +300,9 @@
 		<!-- /container -->
 	</div>
 	<!-- /section -->
-
+	
 	@yield('content')
-
+	
 	<!-- FOOTER -->
 	<footer id="footer" class="section section-grey">
 		<!-- container -->
@@ -345,13 +315,13 @@
 						<!-- footer logo -->
 						<div class="footer-logo">
 							<a class="logo" href="#">
-		            <img src="./img/logo.png" alt="">
-		          </a>
+								<img src="./img/logo.png" alt="">
+							</a>
 						</div>
 						<!-- /footer logo -->
-
+	
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
-
+	
 						<!-- footer social -->
 						<ul class="footer-social">
 							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -364,7 +334,7 @@
 					</div>
 				</div>
 				<!-- /footer widget -->
-
+	
 				<!-- footer widget -->
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<div class="footer">
@@ -379,9 +349,9 @@
 					</div>
 				</div>
 				<!-- /footer widget -->
-
+	
 				<div class="clearfix visible-sm visible-xs"></div>
-
+	
 				<!-- footer widget -->
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<div class="footer">
@@ -395,7 +365,7 @@
 					</div>
 				</div>
 				<!-- /footer widget -->
-
+	
 				<!-- footer subscribe -->
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<div class="footer">
